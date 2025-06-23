@@ -1,8 +1,21 @@
 
 
-# 1. **My Code - API for Text-to-Speech Conversion**
+# 1. ** Text-to-Speech Conversion**
 
 This section covers the implementation of a simple **Flask API** for converting text to speech using the neural network-based **TTS** model.
+
+### **Model Used:**
+
+This repository uses the **XTTS model** developed by Coqui. You can refer to the [Coqui XTTS Documentation](https://docs.coqui.ai/en/latest/models/xtts.html#) for a more detailed understanding.
+
+### **Model Features:**
+
+* **Language Support:** English, Spanish, French, German, Italian, Portuguese, Polish, Russian, Arabic, Japanese, Chinese, etc.
+* **Cross-Language Voice Cloning:** Generate speech in various languages based on a single voice.
+* **Emotion and Style Transfer:** Modify the emotion and style of the generated voice.
+
+### Working of the model 
+![image](https://github.com/user-attachments/assets/ac0df929-e14c-4da1-a033-745fb2a24619)
 
 ## **Setup**
 
@@ -68,43 +81,21 @@ This endpoint accepts a **POST** request with a **JSON payload** containing the 
 }
 ```
 
+following the markdown chunking process described above. A diagram and explanation of the process is described below.
+
 #### Response:
 
-* The response will include a generated **audio file** in **MP3** format, containing the spoken version of the provided text.
+* The response will include a generated **audio file** in **MP3** and **Wav** format, containing the spoken version of the provided text.
+
 
 ---
 
-**Sample Audio:**
-
-You can test the endpoint using the following example text:
-
-```json
-{
-  "text": "This is a test of the Text-to-Speech conversion using XTTS model.",
-  "ascent": "en"
-}
-```
-
----
-
----
 
 # 2. **Inference of the Model Only**
 
 The inference section highlights how to utilize the **XTTS model** for **text-to-speech conversion** directly, without any additional server setup.
 
-### **Model Used:**
 
-This repository uses the **XTTS model** developed by Coqui. You can refer to the [Coqui XTTS Documentation](https://docs.coqui.ai/en/latest/models/xtts.html#) for a more detailed understanding.
-
-### **Model Features:**
-
-* **Language Support:** English, Spanish, French, German, Italian, Portuguese, Polish, Russian, Arabic, Japanese, Chinese, etc.
-* **Cross-Language Voice Cloning:** Generate speech in various languages based on a single voice.
-* **Emotion and Style Transfer:** Modify the emotion and style of the generated voice.
-
-### Working of the model 
-![image](https://github.com/user-attachments/assets/ac0df929-e14c-4da1-a033-745fb2a24619)
 
 ### **Code Example:**
 
