@@ -1,103 +1,144 @@
----
-license: other
-license_name: coqui-public-model-license
-license_link: https://coqui.ai/cpml
-library_name: coqui
-pipeline_tag: text-to-speech
-widget:
-  - text: "Once when I was six years old I saw a magnificent picture"
+Here is a section-wise distribution for the model you can use for your GitHub project:
+
 ---
 
-# ⓍTTS
-ⓍTTS is a Voice generation model that lets you clone voices into different languages by using just a quick 6-second audio clip. There is no need for an excessive amount of training data that spans countless hours.
+# 1. **My Code - API for Text-to-Speech Conversion**
 
-This is the same or similar model to what powers [Coqui Studio](https://coqui.ai/) and [Coqui API](https://docs.coqui.ai/docs).
+This section covers the implementation of a simple **Flask API** for converting text to speech using the neural network-based **TTS** model.
 
-### Features
-- Supports 17 languages. 
-- Voice cloning with just a 6-second audio clip.
-- Emotion and style transfer by cloning. 
-- Cross-language voice cloning.
-- Multi-lingual speech generation.
-- 24khz sampling rate.
+## **Setup**
 
-### Updates over XTTS-v1
-- 2 new languages; Hungarian and Korean
-- Architectural improvements for speaker conditioning.
-- Enables the use of multiple speaker references and interpolation between speakers.
-- Stability improvements.
-- Better prosody and audio quality across the board.
+### 1. **Install Dependencies:**
 
-### Languages
-XTTS-v2 supports 17 languages: **English (en), Spanish (es), French (fr), German (de), Italian (it), Portuguese (pt),
-Polish (pl), Turkish (tr), Russian (ru), Dutch (nl), Czech (cs), Arabic (ar), Chinese (zh-cn), Japanese (ja), Hungarian (hu), Korean (ko)
-Hindi (hi)**.
+* Clone the repository and navigate to the project directory.
 
-Stay tuned as we continue to add support for more languages. If you have any language requests, feel free to reach out!
+  ```bash
+  git clone https://github.com/thenameisAnurag/Text_to_Speech.git
+  cd Text_to_Speech
+  ```
 
-### Code
-The [code-base](https://github.com/coqui-ai/TTS) supports inference and [fine-tuning](https://tts.readthedocs.io/en/latest/models/xtts.html#training).
+* Create a Python virtual environment:
 
-### Demo Spaces
-- [XTTS Space](https://huggingface.co/spaces/coqui/xtts)  :  You can see how model performs on supported languages, and try with your own reference or microphone input
-- [XTTS Voice Chat with Mistral or Zephyr](https://huggingface.co/spaces/coqui/voice-chat-with-mistral) : You can experience streaming voice chat with Mistral 7B Instruct or Zephyr 7B Beta
+  ```bash
+  python3 -m venv venv
+  ```
 
-|                                 |                                         |
-| ------------------------------- | --------------------------------------- |
-| 🐸💬 **CoquiTTS**               | [coqui/TTS on Github](https://github.com/coqui-ai/TTS)|
-| 💼 **Documentation**            | [ReadTheDocs](https://tts.readthedocs.io/en/latest/)
-| 👩‍💻 **Questions**                | [GitHub Discussions](https://github.com/coqui-ai/TTS/discussions) |
-| 🗯 **Community**         | [Discord](https://discord.gg/5eXr5seRrv)  |
+* Activate the virtual environment:
 
+  ```bash
+  source venv/bin/activate
+  ```
 
-### License
-This model is licensed under [Coqui Public Model License](https://coqui.ai/cpml). There's a lot that goes into a license for generative models, and you can read more of [the origin story of CPML here](https://coqui.ai/blog/tts/cpml).
+* Install the required dependencies:
 
-### Contact
-Come and join in our 🐸Community. We're active on [Discord](https://discord.gg/fBC58unbKE) and [Twitter](https://twitter.com/coqui_ai).
-You can also mail us at info@coqui.ai.
+  ```bash
+  pip install -r requirements.txt
+  ```
 
-Using 🐸TTS API:
+### 2. **Download the TTS Model:**
 
-```python
-from TTS.api import TTS
-tts = TTS("tts_models/multilingual/multi-dataset/xtts_v2", gpu=True)
+Ensure that you have the **TTS model** and **configuration files** stored in the correct path:
 
-# generate speech by cloning a voice using default settings
-tts.tts_to_file(text="It took me quite a long time to develop a voice, and now that I have it I'm not going to be silent.",
-                file_path="output.wav",
-                speaker_wav="/path/to/target/speaker.wav",
-                language="en")
-
+```bash
+/home/anuragmishra/Anurag/TTS/XTTS-v2/
 ```
 
-Using 🐸TTS Command line:
+### 3. **Run the Flask Application:**
 
-```console
- tts --model_name tts_models/multilingual/multi-dataset/xtts_v2 \
-     --text "Bugün okula gitmek istemiyorum." \
-     --speaker_wav /path/to/target/speaker.wav \
-     --language_idx tr \
-     --use_cuda true
+Start the Flask API server:
+
+```bash
+python app.py
 ```
 
-Using the model directly:
+The application will run on **[http://0.0.0.0:5000/](http://0.0.0.0:5000/)**.
+
+---
+
+## **API Documentation**
+
+### **POST /generate\_speech**
+
+This endpoint accepts a **POST** request with a **JSON payload** containing the following fields:
+
+#### Request Body Example:
+
+```json
+{
+  "text": "Your long paragraph of text goes here.",
+  "ascent": "en"
+}
+```
+
+#### Response:
+
+* The response will include a generated **audio file** in **MP3** format, containing the spoken version of the provided text.
+
+---
+
+**Sample Audio:**
+
+You can test the endpoint using the following example text:
+
+```json
+{
+  "text": "This is a test of the Text-to-Speech conversion using XTTS model.",
+  "ascent": "en"
+}
+```
+
+---
+
+---
+
+# 2. **Inference of the Model Only**
+
+The inference section highlights how to utilize the **XTTS model** for **text-to-speech conversion** directly, without any additional server setup.
+
+### **Model Used:**
+
+This repository uses the **XTTS model** developed by Coqui. You can refer to the [Coqui XTTS Documentation](https://docs.coqui.ai/en/latest/models/xtts.html#) for a more detailed understanding.
+
+### **Model Features:**
+
+* **Language Support:** English, Spanish, French, German, Italian, Portuguese, Polish, Russian, Arabic, Japanese, Chinese, etc.
+* **Cross-Language Voice Cloning:** Generate speech in various languages based on a single voice.
+* **Emotion and Style Transfer:** Modify the emotion and style of the generated voice.
+
+### Working of the model 
+![image](https://github.com/user-attachments/assets/ac0df929-e14c-4da1-a033-745fb2a24619)
+
+### **Code Example:**
 
 ```python
 from TTS.tts.configs.xtts_config import XttsConfig
 from TTS.tts.models.xtts import Xtts
 
+# Load model and config
 config = XttsConfig()
 config.load_json("/path/to/xtts/config.json")
 model = Xtts.init_from_config(config)
 model.load_checkpoint(config, checkpoint_dir="/path/to/xtts/", eval=True)
 model.cuda()
 
+# Synthesize speech
 outputs = model.synthesize(
-    "It took me quite a long time to develop a voice and now that I have it I am not going to be silent.",
+    "This is an example text for generating speech using XTTS.",
     config,
-    speaker_wav="/data/TTS-public/_refclips/3.wav",
+    speaker_wav="/path/to/speaker_audio.wav",  # Reference speaker audio
     gpt_cond_len=3,
-    language="en",
+    language="en"
 )
+
+# Save the output audio
+with open("generated_speech.wav", "wb") as f:
+    f.write(outputs["wav"])
 ```
+
+---
+
+
+
+---
+
+
