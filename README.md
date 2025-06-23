@@ -1,6 +1,6 @@
 
 
-# 1. ** Text-to-Speech Conversion**
+# 1. Text-to-Speech Conversion
 
 This section covers the implementation of a simple **Flask API** for converting text to speech using the neural network-based **TTS** model.
 
