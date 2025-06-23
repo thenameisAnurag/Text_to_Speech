@@ -89,7 +89,9 @@ following the markdown chunking process described above. A diagram and explanati
 
 
 ---
+### My approach
 
+![readme drawio](https://github.com/user-attachments/assets/6bb9876c-aca7-4b93-a4d7-daede1cb275f)
 
 # 2. **Inference of the Model Only**
 
