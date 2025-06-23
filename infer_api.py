@@ -87,22 +87,22 @@ def convert_wav_to_mp3(wav_file, mp3_file):
 def load_model_for_language(language_code):
     # Initialize the model and config
     config = XttsConfig()
-    config.load_json("/home/anuragmishra/Anurag/TTS/XTTS-v2/config.json")
+    config.load_json("XTTS config.json path")
     
     # Check for different language configurations and paths
     if language_code == 'en':  # English
-        speaker_wav = "/home/anuragmishra/Anurag/TTS/XTTS-v2/samples/en_sample.wav"
+        speaker_wav = "path_of_sample_file/en_sample.wav"
     elif language_code == 'fr':  # French
-        speaker_wav = "/home/anuragmishra/Anurag/TTS/XTTS-v2/samples/fr_sample.wav"
+        speaker_wav = "path_of_sample_file/fr_sample.wav"
     elif language_code == 'de':  # German
-        speaker_wav = "/home/anuragmishra/Anurag/TTS/XTTS-v2/samples/de_sample.wav"
+        speaker_wav = "path_of_sample_file/de_sample.wav"
     elif language_code == 'ja':  # Japanese
-        speaker_wav = "/home/anuragmishra/Anurag/TTS/XTTS-v2/samples/ja-sample.wav"
+        speaker_wav = "path_of_sample_file/ja-sample.wav"
     else:
         return None, None  # Unknown language code
 
     model = Xtts.init_from_config(config)
-    model.load_checkpoint(config, checkpoint_dir="/home/anuragmishra/Anurag/TTS/XTTS-v2/", eval=True)
+    model.load_checkpoint(config, checkpoint_dir="XTTS v2 path/", eval=True)
     model.cuda()  # Move the model to GPU
 
     return model, speaker_wav, config
@@ -125,8 +125,8 @@ def generate_speech():
     audio_chunks = generate_audio_chunks_with_token_limit(text, model, config, speaker_wav)  # Pass config and speaker_wav
 
     # Define output paths for the WAV and MP3 files
-    output_wav = "/home/anuragmishra/Anurag/TTS/XTTS-v2/output_audio.wav"
-    output_mp3 = "/home/anuragmishra/Anurag/TTS/XTTS-v2/output_audio.mp3"
+    output_wav = "path_of_sample_file_sample.wav/output_audio.wav"
+    output_mp3 = "path_of_sample_file_sample.mp3/output_audio.mp3"
     
     # Merge the audio chunks into a single WAV file
     merge_audio_chunks(audio_chunks, output_wav)
