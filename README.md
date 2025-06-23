@@ -1,6 +1,4 @@
-Here is a section-wise distribution for the model you can use for your GitHub project:
 
----
 
 # 1. **My Code - API for Text-to-Speech Conversion**
 
